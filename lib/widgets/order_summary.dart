@@ -11,7 +11,7 @@ class OrderSummary extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CartBloc, CartState>(
       builder: (context, state) {
-        if (state is CartLoading) {
+        if (state is CartInitial) {
           const Center(
             child: CircularProgressIndicator(),
           );

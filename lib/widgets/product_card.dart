@@ -7,6 +7,7 @@ import 'package:ecommerce_bloc/screens/product/product_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductCart extends StatelessWidget {
   const ProductCart({
@@ -35,7 +36,7 @@ class ProductCart extends StatelessWidget {
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width / widthFactor,
-              height: 150,
+              height: 125.h,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: Image.network(
@@ -49,7 +50,7 @@ class ProductCart extends StatelessWidget {
               bottom: 0,
               child: Container(
                 width: MediaQuery.of(context).size.width / widthFactor,
-                height: 80,
+                height: 60.h,
                 decoration: BoxDecoration(
                   color: Colors.black.withAlpha(150),
                   borderRadius: BorderRadius.circular(15),
@@ -84,7 +85,7 @@ class ProductCart extends StatelessWidget {
                       ),
                       BlocBuilder<CartBloc, CartState>(
                         builder: (context, state) {
-                          if (state is CartLoading) {
+                          if (state is CartInitial) {
                             const Center(
                               child: CircularProgressIndicator(),
                             );

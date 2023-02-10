@@ -10,14 +10,14 @@ part 'cart_event.dart';
 part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
-  CartBloc() : super(CartLoading()) {
+  CartBloc() : super(CartInitial()) {
     on<CartStarted>(_mapCartStarted);
     on<CartAddProductToState>(_mapCartAddProductToState);
     on<CartRemoveProductToState>(_mapCartRemoveProductToState);
   }
 
   void _mapCartStarted(CartStarted event, Emitter<CartState> emit) async {
-    emit(CartLoading());
+    emit(CartInitial());
 
     try {
       await Future.delayed(const Duration(seconds: 1));

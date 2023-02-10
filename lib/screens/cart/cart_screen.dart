@@ -20,7 +20,7 @@ class CartScreen extends StatelessWidget {
         scrollDirection: Axis.vertical,
         child: BlocBuilder<CartBloc, CartState>(
           builder: (context, state) {
-            if (state is CartLoading) {
+            if (state is CartInitial) {
               return const Center(
                 child: CircularProgressIndicator(),
               );

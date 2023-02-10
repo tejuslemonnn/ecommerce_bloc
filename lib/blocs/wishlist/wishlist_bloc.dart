@@ -10,7 +10,7 @@ part 'wishlist_event.dart';
 part 'wishlist_state.dart';
 
 class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
-  WishlistBloc() : super(WishlistLoading()) {
+  WishlistBloc() : super(WishlistInitial()) {
     on<StartWishlist>(_mapStartWishlistToState);
     on<AddProductToWishlist>(_mapAddWishlistProductToState);
     on<RemoveProductFromWishlist>(_mapRemoveWishlistProductToState);
@@ -18,7 +18,7 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
 
   void _mapStartWishlistToState(
       StartWishlist event, Emitter<WishlistState> emit) async {
-    emit(WishlistLoading());
+    emit(WishlistInitial());
 
     try {
       await Future.delayed(Duration(seconds: 1));

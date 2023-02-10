@@ -3,6 +3,7 @@ import 'package:ecommerce_bloc/config/app_routes.dart';
 import 'package:ecommerce_bloc/models/models.dart';
 import 'package:ecommerce_bloc/screens/screens.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HeroCarouselCard extends StatelessWidget {
   const HeroCarouselCard({
@@ -39,7 +40,7 @@ class HeroCarouselCard extends StatelessWidget {
               child: Image.network(
                 product == null ? category!.imageUrl : product!.imageUrl,
                 fit: BoxFit.cover,
-                width: 1000.0,
+                width: 1000.0.w,
               ),
             ),
             product ==  null ? Positioned(

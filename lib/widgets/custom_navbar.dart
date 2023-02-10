@@ -1,3 +1,4 @@
+import 'package:ecommerce_bloc/blocs/checkout/checkout_bloc.dart';
 import 'package:ecommerce_bloc/config/app_pages.dart';
 import 'package:ecommerce_bloc/config/app_routes.dart';
 import 'package:ecommerce_bloc/screens/cart/cart_screen.dart';
@@ -5,6 +6,7 @@ import 'package:ecommerce_bloc/screens/checkout/checkout_screen.dart';
 import 'package:ecommerce_bloc/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomNavbar extends StatelessWidget {
   const CustomNavbar({
@@ -44,8 +46,7 @@ class HomeNavbar extends StatelessWidget {
           onPressed: ModalRoute.of(context)?.settings.name == Routes.home
               ? null
               : () {
-                  AppRouter.push(
-                      context, const HomeScreen(), Routes.home);
+                  AppRouter.push(context, const HomeScreen(), Routes.home);
                 },
           icon: Icon(
               ModalRoute.of(context)?.settings.name == Routes.home
@@ -57,8 +58,7 @@ class HomeNavbar extends StatelessWidget {
             onPressed: ModalRoute.of(context)?.settings.name == Routes.cart
                 ? null
                 : () {
-                    AppRouter.push(
-                        context, const CartScreen(), Routes.cart);
+                    AppRouter.push(context, const CartScreen(), Routes.cart);
                   },
             icon: Icon(
                 ModalRoute.of(context)?.settings.name == Routes.cart
@@ -67,8 +67,7 @@ class HomeNavbar extends StatelessWidget {
                 color: Colors.white)),
         IconButton(
             onPressed: () {
-              AppRouter.push(
-                  context, const HomeScreen(), Routes.home);
+              AppRouter.push(context, const HomeScreen(), Routes.home);
             },
             icon: const Icon(CupertinoIcons.person, color: Colors.white)),
       ],
@@ -89,7 +88,7 @@ class GoToCheckoutNavBar extends StatelessWidget {
       children: [
         ElevatedButton(
           onPressed: () {
-            AppRouter.push(context, const CheckoutScreen(), Routes.checkout);
+            AppRouter.push(context, CheckoutScreen(), Routes.checkout);
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.white,
@@ -110,21 +109,39 @@ class OrderNowNavbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/payment-selection');
-          },
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
-          child: Text(
-            'CHOOSE PAYMENT',
-            style: Theme.of(context).textTheme.displaySmall,
-          ),
-        ),
-      ],
+    return BlocBuilder<CheckoutBloc, CheckoutState>(
+      builder: (context, state) {
+        if (state is CheckoutInitial) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+
+        if (state is CheckoutLoaded) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  context
+                      .read<CheckoutBloc>()
+                      .add(ConfirmCheckout(checkout: state.checkout));
+                },
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                child: Text(
+                  'ORDER NOW',
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
+              ),
+            ],
+          );
+        } else {
+          return const Center(
+            child: Text("Something Went Wrong!"),
+          );
+        }
+      },
     );
   }
 }

@@ -16,7 +16,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
 
   ProductBloc({required ProductRepository productRepository})
       : _productRepository = productRepository,
-        super(ProductLoading()) {
+        super(ProductInitial()) {
     on<LoadProduct>(_onLoadProducts);
     on<UpdateProduct>(_onUpdateProducts);
   }

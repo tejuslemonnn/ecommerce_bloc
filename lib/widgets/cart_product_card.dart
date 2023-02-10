@@ -39,7 +39,7 @@ class CartProductCard extends StatelessWidget {
           ),
           BlocBuilder<CartBloc, CartState>(
             builder: (context, state) {
-              if (state is CartLoading) {
+              if (state is CartInitial) {
                 return const Center(
                   child: CircularProgressIndicator(),
                 );

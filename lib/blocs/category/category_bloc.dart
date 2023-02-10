@@ -16,7 +16,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
 
   CategoryBloc({required CategoryRepository categoryRepository})
       : _categoryRepository = categoryRepository,
-        super(CategoryLoading()) {
+        super(CategoryInitial()) {
     on<LoadCategories>(_onLoadCategories);
     on<UpdateCategories>(_onUpdateCategories);
   }

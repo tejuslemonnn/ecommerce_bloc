@@ -26,8 +26,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             BlocBuilder<CategoryBloc, CategoryState>(
               builder: (context, state) {
-                print(state);
-                if (state is CategoryLoading) {
+                if (state is CategoryInitial) {
                   const Center(
                     child: CircularProgressIndicator(),
                   );
@@ -55,7 +54,7 @@ class HomeScreen extends StatelessWidget {
             const SectionTitle(title: "RECOMMENDED"),
             BlocBuilder<ProductBloc, ProductState>(
               builder: (context, state) {
-                if (state is ProductLoading) {
+                if (state is ProductInitial) {
                   const Center(
                     child: CircularProgressIndicator(),
                   );
@@ -78,7 +77,7 @@ class HomeScreen extends StatelessWidget {
             const SectionTitle(title: "POPULAR"),
             BlocBuilder<ProductBloc, ProductState>(
               builder: (context, state) {
-                if (state is ProductLoading) {
+                if (state is ProductInitial) {
                   const Center(
                     child: CircularProgressIndicator(),
                   );
