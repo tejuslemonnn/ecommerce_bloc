@@ -1,5 +1,5 @@
 # ecommerce_bloc
-## [Admin Panel](https://github.com/tejuslemonnn/admin-ecommerce_bloc)
+## [Admin Panel for Ecommerce BLOC](https://github.com/tejuslemonnn/admin-ecommerce_bloc)
 
 A new Flutter project.
 
