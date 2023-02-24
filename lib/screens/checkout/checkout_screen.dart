@@ -1,5 +1,7 @@
 import 'package:ecommerce_bloc/blocs/checkout/checkout_bloc.dart';
+import 'package:ecommerce_bloc/config/app_pages.dart';
 import 'package:ecommerce_bloc/config/app_routes.dart';
+import 'package:ecommerce_bloc/screens/payment_method/payment_method_screen.dart';
 import 'package:ecommerce_bloc/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -125,7 +127,9 @@ class CheckoutScreen extends StatelessWidget {
         padding:  const MaterialStatePropertyAll(EdgeInsets.all(20)),
         backgroundColor: MaterialStateProperty.all(Colors.black),
       ),
-      onPressed: () {},
+      onPressed: () {
+        AppRouter.push(context, PaymentMethodScreen(), Routes.paymentMethod);
+      },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
